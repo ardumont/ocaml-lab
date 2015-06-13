@@ -8,7 +8,7 @@ start-hacking:
 	load-env-ml
 
 install-deps:
-	opam install git
+	opam install git; echo "true: package(git)" > _tags
 
 ocaml:
 	rlwrap ocaml
