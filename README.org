@@ -1,0 +1,4 @@
+#+title: ocaml-lab
+#+author: ardumont
+
+ocaml hacking and learning
