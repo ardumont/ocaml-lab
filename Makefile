@@ -18,7 +18,10 @@ ocaml:
 clean:
 	rm -f *.cmi *.cmo *.cmx *.o $(PROG)
 
-amodule.o:
+mli:
+	ocamlc -c amodule.mli
+
+amodule.o: mli
 	ocamlc -c amodule.ml
 
 main.o:
@@ -27,7 +30,7 @@ main.o:
 compile: amodule.o main.o
 	ocamlc -o $(PROG) amodule.cmo main.cmo
 
-amodule.x:
+amodule.x: mli
 	ocamlopt -c amodule.ml
 
 main.x:
