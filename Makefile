@@ -1,5 +1,11 @@
 PROG=main
 
+OCAMLFIND=ocamlfind
+
+OCAMLC=$(OCAMLFIND) ocamlc
+
+OCAMLOPT=$(OCAMLFIND) ocamlopt
+
 install-env:
 	nix-env -i env-ml
 
@@ -19,25 +25,25 @@ clean:
 	rm -f *.cmi *.cmo *.cmx *.o $(PROG)
 
 mli:
-	ocamlc -c amodule.mli
+	$(OCAMLC) -c amodule.mli
 
 amodule.o: mli
-	ocamlc -c amodule.ml
+	$(OCAMLC) -c amodule.ml
 
 main.o:
-	ocamlc -c amodule.cmo main.ml
+	$(OCAMLC) -c amodule.cmo main.ml
 
 compile: amodule.o main.o
-	ocamlc -o $(PROG) amodule.cmo main.cmo
+	$(OCAMLC) -o $(PROG) amodule.cmo main.cmo
 
 amodule.x: mli
-	ocamlopt -c amodule.ml
+	$(OCAMLOPT) -c amodule.ml
 
 main.x:
-	ocamlopt -c amodule.cmx main.ml
+	$(OCAMLOPT) -c amodule.cmx main.ml
 
 compile-x: amodule.x main.x
-	ocamlopt -o $(PROG) amodule.cmx main.cmx
+	$(OCAMLOPT) -o $(PROG) amodule.cmx main.cmx
 
 run:
 	./$(PROG)
