@@ -38,3 +38,8 @@ compile-x: amodule.x main.x
 
 run:
 	./$(PROG)
+
+# dep:
+# 	ocamldep *.ml *.mli > .depend
+
+# include .depend
