@@ -28,7 +28,7 @@ mli:
 	$(OCAMLC) -c amodule.mli
 
 amodule.o: mli
-	$(OCAMLC) -c amodule.ml
+	$(OCAMLC) -package git -c amodule.ml
 
 main.o:
 	$(OCAMLC) -c amodule.cmo main.ml
