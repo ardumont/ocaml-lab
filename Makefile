@@ -1,3 +1,6 @@
+SRC_FILE=test.ml
+PROG=test
+
 install-env:
 	nix-env -i env-ml
 
@@ -14,4 +17,7 @@ ocaml:
 	rlwrap ocaml
 
 compile:
-	ocamlc -o test test.ml
+	ocamlc -o $(PROG) $(SRC_FILE)
+
+run:
+	./$(PROG)
