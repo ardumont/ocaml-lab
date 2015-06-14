@@ -16,7 +16,7 @@ ocaml:
 	rlwrap ocaml
 
 clean:
-	rm -f *.cmi *.cmo $(PROG)
+	rm -f *.cmi *.cmo *.cmx *.o $(PROG)
 
 amodule.o:
 	ocamlc -c amodule.ml
@@ -26,6 +26,15 @@ main.o:
 
 compile: amodule.o main.o
 	ocamlc -o $(PROG) amodule.cmo main.cmo
+
+amodule.x:
+	ocamlopt -c amodule.ml
+
+main.x:
+	ocamlopt -c amodule.cmx main.ml
+
+compile-x: amodule.x main.x
+	ocamlopt -o $(PROG) amodule.cmx main.cmx
 
 run:
 	./$(PROG)
