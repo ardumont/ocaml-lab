@@ -1,5 +1,4 @@
-SRC_FILE=test.ml
-PROG=test
+PROG=main
 
 install-env:
 	nix-env -i env-ml
@@ -16,8 +15,17 @@ install-deps:
 ocaml:
 	rlwrap ocaml
 
-compile:
-	ocamlc -o $(PROG) $(SRC_FILE)
+clean:
+	rm -f *.cmi *.cmo $(PROG)
+
+amodule.o:
+	ocamlc -c amodule.ml
+
+main.o:
+	ocamlc -c amodule.cmo main.ml
+
+compile: amodule.o main.o
+	ocamlc -o $(PROG) amodule.cmo main.cmo
 
 run:
 	./$(PROG)
